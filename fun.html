@@ -3,158 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Memorable Extra - Arielle</title>
-
+  <title>Fun Alert</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e3a8a);
       height: 100vh;
       overflow: hidden;
+      background: linear-gradient(135deg, #f4c29a, #8a2be2, #3aa0ff);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       position: relative;
-      color: #fff;
     }
 
     .alert-box {
-      width: 420px;
-      background: #fff;
-      border-radius: 14px;
+      width: 520px;
+      max-width: 90vw;
+      background: #f5f5f7;
+      border-radius: 16px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 0;
       overflow: hidden;
-}
-
-.alert-header {
-  padding: 12px 16px;
-  font-weight: 600;
-  color: #555;
-  border-bottom: 1px solid #eee;
-}
-
-.alert-body {
-  padding: 20px;
-  font-size: 15px;
-  color: #111;
-}
-
-.alert-footer {
-  padding: 12px 16px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.alert-footer button {
-  background: #007aff;
-  color: white;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.alert-footer button:hover {
-  background: #0063d1;
-}
-
-.hidden {
-  display: none;
-}
-
-    .close-btn {
-      margin-top: 16px;
-      padding: 10px 18px;
-      border: none;
-      border-radius: 10px;
-      background: #2563eb;
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.2s ease;
     }
 
-.close-btn:hover {
-  background: #1d4ed8;
-    }
-  
-
-    h1 {
-      margin-top: 16px;
-      margin-bottom: 10px;
-      font-size: 24px;
+    .alert-header {
+      padding: 18px 20px 8px 20px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #444;
     }
 
-    p {
-      margin: 10px 0;
+    .alert-body {
+      padding: 0 20px 24px 20px;
+      font-size: 18px;
+      color: #111;
       line-height: 1.5;
     }
 
-    .message {
-      margin-top: 18px;
-      font-weight: bold;
-      color: #1d4ed8;
-      min-height: 24px;
+    .alert-footer {
+      padding: 0 20px 18px 20px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .alert-footer button {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .alert-footer button:hover {
+      background: #2563eb;
     }
 
     .hidden {
       display: none;
     }
-
-    .footer {
-      margin-top: 16px;
-      font-size: 14px;
-      color: #6b7280;
-    }
-
-    .thankyou {
-      font-size: 26px;
-      font-weight: bold;
-      color: #1d4ed8;
-      margin-top: 20px;
-    }
   </style>
 </head>
-
 <body>
 
-  <!-- FIRST MODAL -->
   <div class="alert-box" id="modal1">
-  <div class="alert-header">mycreativewebsite.com says</div>
-  <div class="alert-body">
-    This is an alert! Click "Close" to close it.
+    <div class="alert-header">mycreativewebsite.com says</div>
+    <div class="alert-body" id="message">
+      This is an alert! Click "Close" to close it.
+    </div>
+    <div class="alert-footer">
+      <button id="closeBtn">Close</button>
+    </div>
   </div>
-  <div class="alert-footer">
-    <button id="closeBtn">Close</button>
-  </div>
-</div>
 
-<div class="alert-box hidden" id="modal2">
-  <div class="alert-header">mycreativewebsite.com says</div>
-  <div class="alert-body">
-    Thank you for listening 🙏
-  </div>
-  <div class="alert-footer">
-    <button onclick="window.close()">Close</button>
-  </div>
-</div>
-
-  <!-- SECOND MODAL -->
-  <div class="modal hidden" id="modal2">
-    <h1>Thank You 🙏</h1>
-    <p class="thankyou">Thank you for listening!</p>
-    <p>I appreciate your time.</p>
+  <div class="alert-box hidden" id="modal2">
+    <div class="alert-header">mycreativewebsite.com says</div>
+    <div class="alert-body">
+      Thank you for listening!
+    </div>
+    <div class="alert-footer">
+      <button id="finalCloseBtn">Close</button>
+    </div>
   </div>
 
   <script>
     const closeBtn = document.getElementById("closeBtn");
+    const finalCloseBtn = document.getElementById("finalCloseBtn");
     const modal1 = document.getElementById("modal1");
     const modal2 = document.getElementById("modal2");
     const message = document.getElementById("message");
@@ -162,16 +104,16 @@
     let attempts = 0;
 
     const responses = [
-      "Not yet 😄",
-      "You still need a systems builder.",
-      "Also a data-driven marketer.",
-      "And definitely a problem solver.",
-      "Good presentations should be memorable.",
-      "You’re getting closer...",
-      "Still here. Just like strong branding.",
-      "Almost there.",
-      "One more after this.",
-      "Okay, now you may close me."
+      'Not yet 😄',
+      'Still trying to close it?',
+      'Almost... but not really.',
+      'Good things take persistence.',
+      'Memorable, right?',
+      'You are getting closer.',
+      'Just one more skill check.',
+      'Still here 👀',
+      'Okay, almost done.',
+      'Now you may close it.'
     ];
 
     function moveModalRandomly() {
@@ -181,8 +123,8 @@
       const maxX = window.innerWidth - modalWidth;
       const maxY = window.innerHeight - modalHeight;
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
+      const randomX = Math.max(0, Math.random() * maxX);
+      const randomY = Math.max(0, Math.random() * maxY);
 
       modal1.style.left = randomX + "px";
       modal1.style.top = randomY + "px";
@@ -196,14 +138,16 @@
         message.textContent = responses[attempts - 1];
         moveModalRandomly();
       } else {
-        message.textContent = responses[9];
-
-        // Hide first modal
         modal1.classList.add("hidden");
-
-        // Show thank you modal
         modal2.classList.remove("hidden");
+        modal2.style.left = "50%";
+        modal2.style.top = "50%";
+        modal2.style.transform = "translate(-50%, -50%)";
       }
+    });
+
+    finalCloseBtn.addEventListener("click", () => {
+      modal2.classList.add("hidden");
     });
   </script>
 
