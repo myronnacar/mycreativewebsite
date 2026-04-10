@@ -1,0 +1,1237 @@
+
+/*reset css*/
+*{ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*font*/
+@font-face {
+    font-family: 'montserrat900';
+    src: url(Montserrat-VariableFont_wght.ttf);
+}
+
+body
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    min-height: 100vh;
+}
+
+/*background*/
+.background1
+{   
+    background-image: url('smallbg1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+}
+
+.background2
+{
+    background-image: url('smallbg2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+}
+
+.background3
+{
+    background-image: url('smallbg3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 100vh;
+}
+
+
+
+/*navigation bar*/
+
+.links li
+{
+    list-style-type: none;
+}
+
+.links
+{
+    display: flex;
+    gap: 40px;
+}
+.links a
+{
+    text-decoration: none;
+    text-align: center;
+    font-family: "montserrat900", Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 300;
+    color: white;
+    padding: 10px 10px;
+}
+
+.links .current
+{
+  font-weight: 500;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.links .pointer:hover
+{
+    color: black;
+    background-color: white;
+}
+
+header
+{
+    position: relative;
+    padding: 10px 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+nav
+{
+    height: 30px;
+    max-width: 1500px;
+    min-width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.logo a
+{
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 900;
+    font-size: x-large;
+    color: white;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+
+
+/*dropdown*/
+.togglebutton
+{
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+    display: none;
+}
+.dropdown
+{
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 53px;
+    height: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+}
+
+.dropdown.open
+{
+    height: calc(100vh - 55px);
+}
+.dropdown li
+{
+    display: flex;
+    width: 100%;
+    list-style-type: none;
+    
+}
+.dropdown a
+{
+    text-decoration: none;
+    font-family: "montserrat900", Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 10px 20px;
+}
+.dropdown .droppointer:hover
+{
+   color: black;
+   background-color: white;
+}
+
+.dropdown .current
+{
+    font-weight: 500;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+
+
+
+/*main content home*/
+.contentcontainer_home
+{
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+    
+} 
+
+.content_home
+{
+
+    align-self: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    max-width: 500px;
+    min-width: 40%;
+}
+
+.content_home p
+{
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+}
+
+.content_home span
+{
+    font-weight: 900;
+}
+.content_home h1
+{
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+
+.buttonhome
+{
+    margin-top: 10px;
+    padding: 15px 0;
+}
+.buttonhome a
+{
+    text-decoration: none;
+    font-size: large;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: -2px 2px 2px rgba(255, 255, 255, 0.493);
+    
+}
+
+.buttonhome a:hover
+{
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.493);
+    transition: 0.8s;
+    
+}
+
+.photodesc1
+{
+    margin-top: auto;
+    margin-bottom: auto;
+    color: white;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 100;
+    font-size: x-small;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+/*street photography content*/
+.contentcontainer_street
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+    
+} 
+
+.content_street
+{
+    align-self: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    max-width: 500px;
+    min-width: 40%;
+    
+}
+
+.content_street h1
+{
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+
+.content_street p
+{
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+    
+}
+
+.content_street span
+{
+    font-weight: 900;
+}
+
+.buttonstreet
+{
+    margin-top: 10px;
+    padding: 15px 0;
+}
+
+.buttonstreet a
+{
+    text-decoration: none;
+    font-size: large;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: -2px 2px 2px rgba(255, 255, 255, 0.493);
+}
+
+.buttonstreet a:hover
+{
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.493);
+    transition: 0.8s;
+}
+
+/*portrait photography content*/
+.contentcontainer_portrait
+{
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+    
+} 
+
+.content_portrait
+{
+    align-self: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    max-width: 500px;
+    min-width: 40%;
+}
+
+.content_portrait p
+{
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+}
+
+.content_portrait span
+{
+    font-weight: 900;
+}
+.content_portrait h1
+{
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+
+.buttonport
+{
+    margin-top: 10px;
+    padding: 15px 0;
+}
+
+.buttonport a
+{
+    text-decoration: none;
+    font-size: large;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    padding: 15px 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: -2px 2px 2px rgba(255, 255, 255, 0.493);
+    
+}
+
+.buttonport a:hover
+{
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.493);
+    transition: 0.8s;
+    
+}
+
+
+/*footer*/
+footer
+{
+    background-color: white;
+    height: 200px;
+}
+
+.logocontainer
+{
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.follow
+{
+    text-align: center;
+    font-family: 'montserrat900', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+    font-weight: 400;
+    letter-spacing: 5px;
+    width: 150px;
+    margin-bottom: 10px;
+    
+}
+.socials
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    
+}
+.copy
+{
+    padding-left: 30px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-size: x-small;
+}
+
+
+/*about page*/
+.banner
+{
+    background-image: url('bgbanner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 65vh;
+}
+
+.titlecontainer
+{
+    height: 65vh;
+    background-color: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap
+
+}
+.title
+{   margin-top: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+}
+.titlecontent
+{
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+}
+.desc 
+{
+    margin-top: auto;
+    margin-bottom: 50px;
+    height: 50px;
+    color: white;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 100;
+    font-size: x-small;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+
+.about
+{
+    background-image: url(grainy.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.aboutphoto
+{
+    width: 500px;
+    padding: 10px;
+    margin: 30px;
+    background-color:white;
+    box-shadow: 5px 5px 5px black;
+
+}
+.aboutcontent
+{
+    width: 500px;
+    padding: 20px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+}
+
+.aboutcontent a
+{
+    font-weight: 900;
+    color: rgb(121, 174, 218);
+    text-decoration: none;
+}
+.aboutcontent a:hover
+{
+    color: rebeccapurple;
+}
+.aboutcontent_title
+{
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.aboutcontent span
+{
+    font-weight: 900;
+}
+.img
+{
+    width: 100%;
+}
+
+/* about page source - gears */
+.gears
+{
+    background-image: url(grainy2.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.gearcontent_title
+{
+    font-size: 290%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(43, 43, 43);
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-align: left;
+    letter-spacing: -1px;
+}
+.gearcontent
+{
+    width: 500px;
+    padding: 20px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 600;
+    font-size: large;
+    line-height: 1.5;
+    color: rgb(43, 43, 43);
+}
+.gearcontent span
+{
+    font-weight: 999;
+}
+.gearcontent a
+{
+    text-decoration: none;
+    font-weight: 900;
+    color: rebeccapurple;
+    
+
+}
+.gearcontent a:hover
+{
+    color: rgb(52, 153, 236);
+}
+
+/*table page*/
+
+.table
+{
+    background-image: url('table.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 65vh;
+}
+
+.tablebanner
+{
+    height: 65vh;
+    background-color: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.tabletitle
+{
+    margin-top: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+}
+.tabletitle_desc
+{
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+    
+}
+
+.contenttable_container
+{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/*actual table*/
+.table_container 
+{
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 50px auto;
+}
+
+table
+{
+
+    width: 100%;
+    background-image: url(grainy.jpg);
+    color: white;
+    padding: 20px;
+    border-collapse: collapse;
+    font-family: 'montserrat900', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+caption
+{
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 900;
+    color: rgb(43, 43, 43);
+    text-align: left;
+    padding: 10px;
+}
+
+
+thead tr, th
+{
+    border-bottom: thin solid white;
+    font-weight: 900;
+    font-size: large;
+}
+td
+{
+    font-weight: 400;
+    font-size: large;
+}
+th, td
+{
+    
+    text-align: left;
+    padding: 15px;
+}
+tbody tr:nth-child(even)
+{
+    color: black;
+    background-color: white;
+}
+
+/*extra tips*/
+.extracontainer
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-image: url(grainy.jpg);
+    
+}
+.extracontent span
+{
+    font-weight: 900;
+}
+
+.extracontent
+{
+    width: 500px;
+    padding: 20px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+}
+
+.subscribe
+{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.yt 
+{
+    padding-top: 6px;
+}
+
+.ytlink a
+{
+   color: rgb(121, 174, 218);
+   text-decoration: none;
+}
+.ytlink a:hover
+{
+   color: rebeccapurple;
+}
+
+.extracontent_title
+{
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+    
+}
+
+.videowrapper
+{
+    width: 100%;
+    max-width: 700px;
+    border: 10px solid white;
+    margin: 10px 10px;
+}
+.videocontainer
+{
+    width: 100%;
+    max-width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    position:relative;
+}
+.videocontainer iframe
+{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.extratips
+{
+    padding: 30px;
+    margin: 30px;
+    background-color:white;
+    box-shadow: 5px 5px 5px black;
+}
+
+
+/* contact form page */
+.formbanner
+{
+    background-image: url('formbanner1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 65vh;
+}
+
+.formbanner_overlay
+{
+    height: 65vh;
+    background-color: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.formtitle
+{
+    margin-top: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+}
+.formcaption
+{
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+}
+
+
+/* actual form */
+.formcontainer
+{
+    background-image: url(grainy.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: white;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+
+}
+.fillable
+{
+    color: white;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    margin: 30px 10px;
+}
+form
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.form-row
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;  
+    margin-top: 10px; 
+}
+
+.form-row input
+{
+    width: 500px;
+    min-width: 300px;
+    height: 30px;
+}
+#message
+{
+    height: 100px;
+}
+
+.submitbtn
+{
+    margin: 10px 0;
+    align-self: center;
+}
+input[type=submit]
+{
+    
+    color: white;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: -2px 2px 2px rgba(255, 255, 255, 0.493);
+    padding: 10px;
+    width: 300px;
+    letter-spacing: 3px;
+}
+
+.contactcontent span
+{
+    font-weight: 900;
+}
+
+.contactcontent
+{
+    width: 600px;
+    padding: 20px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+}
+
+
+.contactcontent_title
+{
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+    
+}
+
+/* urban page */
+
+.streetbanner
+{
+    background-image: url('streetbanner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 65vh;
+}
+
+.streetbanner_overlay
+{
+    height: 65vh;
+    background-color: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.street_title
+{
+    margin-top: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+}
+.street_caption
+{
+    margin-left: 30px;
+    margin-right: 30px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+}
+
+/* gallery slider */
+.streetslider
+{
+    background-image: url(grainy.jpg);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.slidercontainer
+{
+    padding: 30px;
+    max-width: 650px;
+    min-width: 20%;
+
+}
+.sliderwrapper
+{
+    position: relative;
+    margin: 20px auto;
+    max-width: 100%;
+}
+.slider
+{
+    display: flex;
+    aspect-ratio: 1 / 1;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    box-shadow: -10px 10px 15px rgb(0, 0, 0);
+    
+}
+
+.slider img
+{
+    flex: 1 0 100%;
+    scroll-snap-align: start;
+    object-fit: cover;
+}
+
+.slidernav
+{
+    display: flex;
+    gap: 20px; 
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+
+.slidernav a
+{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.75;
+    transition: opacity ease 250ms;
+}
+
+.slidernav a:hover
+{
+    opacity: 1;
+}
+
+
+.streetslider_content span
+{
+    font-weight: 900;
+}
+
+.streetslider_content
+{
+    width: 500px;
+    padding: 20px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+}
+
+
+.streetslider_title
+{
+    font-size: 280%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+    
+}
+
+/* urban gallery */
+
+.streetgallery
+{
+    background-image: url(grainy2.jpg);
+    padding: 30px 20px;
+}
+.photocontainer
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.cards
+{
+    max-width: 300px;
+}
+.cards img
+{
+    width: 100%;
+}
+
+.streetsource
+{
+    background-image: url(grainy.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+.extrastreet_content span
+{
+    font-weight: 900;
+}
+.extrastreet_content
+{
+    width: 600px;
+    padding: 20px;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-size: large;
+    line-height: 1.5;
+    color: white;
+}
+
+.extrastreet_content a
+{
+    text-decoration: none;
+    color: rgb(121, 174, 218);
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 900;
+}
+
+.extrastreet_content a:hover
+{
+    color: rebeccapurple;
+}
+
+.extrastreet_title
+{
+    font-size: 260%;
+    font-family: 'montserrat900',Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: 900;
+    
+}
+
+
+/* portrait page */
+.portraitbanner
+{
+    background-image: url('portbanner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 65vh;
+}
+
+/* used the same classes from urban page */
+
+
+
+
+/*responsive design*/
+
+@media only screen and (max-width: 1024px)
+{
+    .links
+    {
+        display: none;
+    }
+    .togglebutton
+    {
+        display: block;
+    }
+    .dropdown
+    {
+        display: block;
+        left: 5px;
+        width: unset;
+    }
+    .background1
+    {
+        background-position: -100px 0;
+    }
+    
+}
+
+
+@media only screen and (max-width: 576px)
+{
+    .links
+    {
+        display: none;
+    }
+    .togglebutton
+    {
+        display: block;
+    }
+    .dropdown
+    {
+        display: block;
+        left: 5px;
+        width: unset;
+    }
+    .background1
+    {
+        background-position: -200px 0;
+    }
+    .form-row input
+    {
+        width: unset;
+    }
+    
+}
+
+@media only screen and (max-width: 390px)
+{
+    .dropdown
+    {
+        left: 5px;
+        width: unset;
+    }
+    
+}
