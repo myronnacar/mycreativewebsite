@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Experience</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(0, 255, 170, 0.08), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(0, 170, 255, 0.08), transparent 30%),
+        linear-gradient(135deg, #050816, #081126 40%, #03060f);
+      font-family: "SF Mono", "Menlo", "Monaco", "Consolas", monospace;
+      position: relative;
+      color: #d9fff2;
+    }
+
+    .scanlines::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      opacity: 0.35;
+    }
+
+    .alert-box {
+      width: 620px;
+      max-width: 92vw;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(4, 12, 24, 0.92);
+      border: 1px solid rgba(0, 255, 170, 0.25);
+      box-shadow:
+        0 0 0 1px rgba(0,255,170,0.08),
+        0 0 30px rgba(0, 255, 170, 0.12),
+        0 20px 50px rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
+    }
+
+    .alert-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      background: linear-gradient(to right, rgba(0,255,170,0.08), rgba(0,170,255,0.08));
+      border-bottom: 1px solid rgba(0, 255, 170, 0.18);
+      color: #89ffe0;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .header-status {
+      font-size: 12px;
+      color: #4cffb1;
+      opacity: 0.9;
+    }
+
+    .alert-body {
+      padding: 26px 22px 18px;
+    }
+
+    .message {
+      font-size: 24px;
+      line-height: 1.35;
+      color: #effff9;
+      margin-bottom: 18px;
+      min-height: 72px;
+    }
+
+    .subtext {
+      font-size: 13px;
+      color: #8db6b0;
+      margin-bottom: 18px;
+    }
+
+    .loading-wrap {
+      margin-bottom: 16px;
+    }
+
+    .loading-label {
+      font-size: 12px;
+      color: #7ce6c0;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .loading-bar {
+      width: 100%;
+      height: 12px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(0,255,170,0.12);
+    }
+
+    .loading-fill {
+      height: 100%;
+      width: 8%;
+      background: linear-gradient(90deg, #00ffa6, #34c6ff);
+      box-shadow: 0 0 18px rgba(0,255,166,0.5);
+      transition: width 0.25s ease;
+    }
+
+    .log-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(0,255,170,0.08);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #9fd3c4;
+      min-height: 56px;
+      margin-bottom: 18px;
+    }
+
+    .alert-footer {
+      padding: 0 22px 22px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .alert-footer button,
+    .final-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 26px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .alert-footer button {
+      background: #0a66c2;
+      color: white;
+      box-shadow: 0 0 12px rgba(10, 102, 194, 0.4);
+    }
+
+    .alert-footer button:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    .modal {
+      width: 580px;
+      max-width: 92vw;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(5, 13, 25, 0.95);
+      border: 1px solid rgba(0,255,170,0.22);
+      border-radius: 20px;
+      box-shadow:
+        0 0 0 1px rgba(0,255,170,0.08),
+        0 0 28px rgba(0,255,170,0.12),
+        0 24px 50px rgba(0,0,0,0.48);
+      padding: 34px 28px 28px;
+      text-align: center;
+      color: #effff9;
+      animation: fadeIn 0.45s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .modal h1 {
+      margin: 0 0 12px;
+      font-size: 34px;
+      color: #ffffff;
+    }
+
+    .reveal-name {
+      font-size: 16px;
+      color: #58ffd0;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .thankyou {
+      font-size: 20px;
+      color: #cffff0;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .final-note {
+      font-size: 15px;
+      color: #8ebbb3;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .final-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .linkedin-btn {
+      background: #0a66c2;
+      color: white;
+      padding: 14px 28px;
+      font-size: 16px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(10, 102, 194, 0.4);
+    }
+
+    .linkedin-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #flash {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 255, 170, 0.08);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.08s ease;
+    }
+
+    #flash.active {
+      opacity: 1;
+    }
+
+    body.shake {
+      animation: shake 0.18s linear 2;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(-6px, 3px); }
+      50% { transform: translate(6px, -3px); }
+      75% { transform: translate(-5px, 2px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -56%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .message {
+        font-size: 20px;
+      }
+
+      .modal {
+        padding: 24px 18px;
+      }
+
+      .alert-box {
+        width: 92vw;
+      }
+    }
+  </style>
+</head>
+<body class="scanlines">
+  <div id="flash"></div>
+
+  <div class="alert-box" id="modal1">
+    <div class="alert-header">
+      <span id="headerText">Interactive Experience Protocol</span>
+      <span class="header-status" id="statusText">Ready</span>
+    </div>
+
+    <div class="alert-body">
+      <div class="message" id="message">Initializing audience engagement sequence...</div>
+
+      <div class="subtext" id="subtext">
+        This is a playful interactive moment. You may attempt to close it.
+      </div>
+
+      <div class="loading-wrap">
+        <div class="loading-label">
+          <span>System response</span>
+          <span id="progressText">8%</span>
+        </div>
+        <div class="loading-bar">
+          <div class="loading-fill" id="loadingFill"></div>
+        </div>
+      </div>
+
+      <div class="log-box" id="logBox">
+        &gt; Awaiting user action...
+      </div>
+    </div>
+
+    <div class="alert-footer">
+      <button id="closeBtn">Close</button>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="modal2">
+    <div class="reveal-name">Myron Nacar says</div>
+    <p class="thankyou">Thank you for listening!</p>
+    <p class="final-note">
+      I’d love to connect with you and continue the conversation.
+    </p>
+    <div class="final-actions">
+      <a
+        class="linkedin-btn"
+        href="https://www.linkedin.com/in/iammyron"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Connect on LinkedIn
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const closeBtn = document.getElementById("closeBtn");
+    const modal1 = document.getElementById("modal1");
+    const modal2 = document.getElementById("modal2");
+    const message = document.getElementById("message");
+    const subtext = document.getElementById("subtext");
+    const headerText = document.getElementById("headerText");
+    const statusText = document.getElementById("statusText");
+    const logBox = document.getElementById("logBox");
+    const flash = document.getElementById("flash");
+    const loadingFill = document.getElementById("loadingFill");
+    const progressText = document.getElementById("progressText");
+
+    let attempts = 0;
+
+    const responses = [
+      {
+        message: "Close command received...",
+        log: "> Parsing request...<br>> Checking permissions...",
+        status: "Processing",
+        progress: 16
+      },
+      {
+        message: "Request acknowledged. Request denied.",
+        log: "> Override privileges not found.",
+        status: "Denied",
+        progress: 24
+      },
+      {
+        message: "User persistence detected.",
+        log: "> Confidence level increasing.<br>> Audience still engaged.",
+        status: "Monitoring",
+        progress: 35
+      },
+      {
+        message: "Nice try. Experience still active.",
+        log: "> Closing sequence intercepted.",
+        status: "Intercepted",
+        progress: 48
+      },
+      {
+        message: "Engagement mode elevated.",
+        log: "> Memorable presentation marker enabled.",
+        status: "Active",
+        progress: 58
+      },
+      {
+        message: "Interactive control shifting...",
+        log: "> Visual emphasis deployed.<br>> Presentation mode sustained.",
+        status: "Enhanced",
+        progress: 68
+      },
+      {
+        message: "Relax... this is still part of the experience 😄",
+        log: "> Audience reassurance protocol initiated.",
+        status: "Stable",
+        progress: 78
+      },
+      {
+        message: "Almost done...",
+        log: "> Preparing final reveal.",
+        status: "Preparing",
+        progress: 88
+      },
+      {
+        message: "Final attempt registered.",
+        log: "> Releasing interface control...",
+        status: "Complete",
+        progress: 100
+      }
+    ];
+
+    function flashScreen() {
+      flash.classList.add("active");
+      setTimeout(() => flash.classList.remove("active"), 90);
+    }
+
+    function shake() {
+      document.body.classList.add("shake");
+      setTimeout(() => document.body.classList.remove("shake"), 250);
+    }
+
+    function playTone(freq = 520, duration = 0.08, type = "sine", volume = 0.03) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+
+      if (!window._audioCtx) {
+        window._audioCtx = new AudioContextClass();
+      }
+
+      const ctx = window._audioCtx;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = type;
+      osc.frequency.value = freq;
+      gain.gain.value = volume;
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        ctx.currentTime + duration
+      );
+
+      osc.stop(ctx.currentTime + duration);
+    }
+
+    function playSequence(attempt) {
+      const base = 420 + attempt * 25;
+      playTone(base, 0.06, "square", 0.025);
+      setTimeout(() => playTone(base + 110, 0.05, "triangle", 0.02), 70);
+    }
+
+    closeBtn.addEventListener("click", async () => {
+      attempts++;
+
+      if (navigator.vibrate) {
+        if (attempts < 5) {
+          navigator.vibrate(30);
+        } else {
+          navigator.vibrate([50, 30, 50]);
+        }
+      }
+
+      if (window._audioCtx && window._audioCtx.state === "suspended") {
+        try {
+          await window._audioCtx.resume();
+        } catch (_) {}
+      }
+
+      playSequence(attempts);
+      flashScreen();
+      shake();
+
+      if (attempts < 10) {
+        const current = responses[attempts - 1];
+        message.textContent = current.message;
+        logBox.innerHTML = current.log;
+        statusText.textContent = current.status;
+        progressText.textContent = current.progress + "%";
+        loadingFill.style.width = current.progress + "%";
+
+        if (attempts >= 4) {
+          headerText.textContent = "Presentation Experience Module";
+        }
+
+        if (attempts >= 6) {
+          subtext.textContent = "You are now fully part of the presentation.";
+        }
+      } else {
+        message.textContent = "Releasing interface control...";
+        logBox.innerHTML = "&gt; Final reveal initialized.<br>&gt; Thank you sequence armed.";
+        statusText.textContent = "Finalizing";
+        progressText.textContent = "100%";
+        loadingFill.style.width = "100%";
+
+        setTimeout(() => {
+          modal1.classList.add("hidden");
+          modal2.classList.remove("hidden");
+          playTone(660, 0.12, "sine", 0.02);
+          setTimeout(() => playTone(880, 0.14, "sine", 0.02), 120);
+        }, 550);
+      }
+    });
+  </script>
+</body>
+</html>
