@@ -415,14 +415,20 @@
     ];
 
     function moveModal() {
-      const w = modal1.offsetWidth;
-      const h = modal1.offsetHeight;
-      const x = Math.max(0, Math.random() * (window.innerWidth - w));
-      const y = Math.max(0, Math.random() * (window.innerHeight - h));
+        const padding = 16;
 
-      modal1.style.left = x + "px";
-      modal1.style.top = y + "px";
-      modal1.style.transform = "none";
+        const w = modal1.offsetWidth;
+        const h = modal1.offsetHeight;
+
+        const maxX = window.innerWidth - w - padding;
+        const maxY = window.innerHeight - h - padding;
+
+        const x = Math.max(padding, Math.random() * maxX);
+        const y = Math.max(padding, Math.random() * maxY);
+
+        modal1.style.left = x + "px";
+        modal1.style.top = y + "px";
+        modal1.style.transform = "none";
     }
 
     function flashScreen() {
