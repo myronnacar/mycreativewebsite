@@ -504,6 +504,10 @@
           subtext.textContent = "You are now fully part of the presentation.";
         }
 
+        if (navigator.vibrate) {
+            navigator.vibrate(30, 20, 30);
+        }
+
         moveModal();
       } else {
         message.textContent = "Releasing interface control...";
